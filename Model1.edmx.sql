@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/19/2022 12:36:51
+-- Date Created: 02/19/2022 13:03:20
 -- Generated from EDMX file: C:\Users\Miguel Angel\source\repos\ProyectoTienda\Model1.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,38 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ProductWithoutStockProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductsWithoutStock] DROP CONSTRAINT [FK_ProductWithoutStockProduct];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProductProductOrdered]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductsOrdered] DROP CONSTRAINT [FK_ProductProductOrdered];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClientOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_ClientOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderProductOrdered]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductsOrdered] DROP CONSTRAINT [FK_OrderProductOrdered];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Products];
+GO
+IF OBJECT_ID(N'[dbo].[ProductsOrdered]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProductsOrdered];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[Clients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Clients];
+GO
+IF OBJECT_ID(N'[dbo].[ProductsWithoutStock]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProductsWithoutStock];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -31,7 +58,7 @@ GO
 CREATE TABLE [dbo].[Products] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Price] decimal(18,0)  NOT NULL,
+    [Price] float  NOT NULL,
     [Amount] int  NOT NULL
 );
 GO
