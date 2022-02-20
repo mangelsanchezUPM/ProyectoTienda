@@ -36,6 +36,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Price" Type="float" Nullable="false" />
     <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="ProductsOrdered">
     <Key>
@@ -153,6 +154,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="Amount" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+          <Property Name="Image" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="ProductOrdered">
           <Key>
@@ -244,6 +246,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
