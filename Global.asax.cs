@@ -22,9 +22,9 @@ namespace ProyectoTienda
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             ModelBinders.Binders.Add(
-                typeof(CartModels), 
+                typeof(Cart), 
                 new CartModelBinder()
-                );
+            );
             
         }
     }

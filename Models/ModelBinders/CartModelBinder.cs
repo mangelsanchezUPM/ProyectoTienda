@@ -10,10 +10,10 @@ namespace ProyectoTienda.Models.ModelBinders
     {
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            CartModels cart = (CartModels)controllerContext.HttpContext.Session["cart"];
+            Cart cart = (Cart)controllerContext.HttpContext.Session["cart"];
             if (cart == null)
             {
-                cart = new CartModels();
+                cart = new Cart();
                 controllerContext.HttpContext.Session["cart"] = cart;
             }
             return cart;
