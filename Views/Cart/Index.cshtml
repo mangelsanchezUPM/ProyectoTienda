@@ -1,0 +1,61 @@
+﻿@model ProyectoTienda.Models.Cart
+
+@{
+    ViewBag.Title = "Carro de la Compra";
+}
+<br />
+<h2>Carro de la Compra</h2>
+<br />
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <tr>
+            <td>
+            </td>
+            <td>
+                <h4>Nombre del Producto</h4>
+            </td>
+            <td>
+                <h4>Unidades</h4>
+            </td>
+            <td>
+                <h4>Precio</h4>
+            </td>
+            <td></td>
+        </tr>
+        @foreach (var productAndUnits in Model)
+        {
+            <tr>
+                <td>
+                    <image width="80px" src="~/Content/images/@(productAndUnits.product.Image ?? "noimage.png")"></image>
+                </td>
+                <td>
+                    <h5>@productAndUnits.product.Name</h5>
+                </td>
+                <td>
+                    <h5>x @productAndUnits.units</h5>
+                </td>
+                <td>
+                    <h5>@productAndUnits.product.Price €</h5>
+                </td>
+                <td>
+                    <a href=""><h5><i class="btn btn-danger fa fa-trash"></i></h5></a>
+                </td>
+            </tr>
+
+        }
+    </table>
+
+    <div class="row">
+        <h4>Precio Total: @Model.GetTotal() €</h4>
+    </div>
+    <div class="row">
+        <a href='@Url.Action("Create", "Orders")'><button class="btn btn-danger">Finalizar compra</button></a>
+    </div>
+}
+else
+{
+    <h4>El carro está vacío. Asegúrese de añadir los productos que desee antes de realizar la compra.</h4>
+    <h5>@Html.ActionLink("Ir al catálogo de productos", "Index", "Products", null, null)</h5>
+
+}
