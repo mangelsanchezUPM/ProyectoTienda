@@ -24,7 +24,7 @@ textarea {
 }
 
 .item {
-    max-width: 22%;
+    width: 22%;
     margin-left: 2px;
     margin-right: 2px;
     margin-bottom: 50px;
@@ -37,16 +37,17 @@ textarea {
 
 @media (max-width: 990px) {
     .item {
-        max-width: 30%;
+        width: 30%;
     }
 }
 
 @media (max-width: 600px) {
     .item {
-        max-width: 45%;
+        width: 45%;
     }
 }
 
 .img-thumbnail {
     max-width: 80%;
+    height: 165px;
 }
