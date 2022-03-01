@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProyectoTienda.ProductOrdered>
+@{
+    ViewBag.Title = "Detalles de Pedido";
+}
+<br />
+<h2>Detalles del Pedido</h2>
+<br />
+<div>
+    @foreach (var productOrdered in Model)
+    {
+        <table class="table">
+            <tr>
+                <td>Nombre</td>
+                <td>@productOrdered.Product.Name</td>
+            </tr>
+
+            <tr>
+                <td>Precio</td>
+                <td>@productOrdered.Product.Price €</td>
+            </tr>
+
+            <tr>
+                <td>Cantidad</td>
+                <td>@productOrdered.Amount</td>
+            </tr>
+
+        </table>
+        <hr />
+    }
+    <h4>Total del pedido: @Model.First().Order.Total €</h4>
+</div>

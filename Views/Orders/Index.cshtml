@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProyectoTienda.Order>
+
+@{
+    ViewBag.Title = "Mis Pedidos";
+}
+<br />
+<h2>Mis Pedidos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <h4>Fecha del Pedido</h4>
+        </th>
+        <th>
+            <h4>Total del Pedido</h4>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>
+                <h5>@Html.DisplayFor(modelItem => order.Date)</h5>
+            </td>
+            <td>
+                <h5>@Html.DisplayFor(modelItem => order.Total) €</h5>
+            </td>
+            <td>
+                <h5>@Html.ActionLink("Ver Detalles", "Details", new { id = order.Id }, null)</h5>
+            </td>
+        </tr>
+    }
+
+</table>

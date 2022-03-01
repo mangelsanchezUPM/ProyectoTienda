@@ -9,32 +9,47 @@ namespace ProyectoTienda.Controllers
 {
     public class CartController : Controller
     {
+        Model1Container db = new Model1Container();
+
+        [Authorize]
         // GET: Cart
-        public ActionResult Index()
+        public ActionResult Index(Cart cart)
         {
-            return View();
+            return View(cart);
         }
 
         // GET: Cart/Add/{id}
         [Authorize]
-        public ActionResult Add(Cart cart, int id)
+        public ActionResult Add(Cart cart, int productId, int units)
         {
-            Model1Container db = new Model1Container();
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Find(productId);
 
-            if (product == null)
+            if (product == null) return HttpNotFound();
+
+            if (cart.Any(pu => pu.product.Id == product.Id))
             {
-                return HttpNotFound();
+                cart.Find(pu => pu.product.Id == product.Id).units += units;
             }
-            
-            cart.Add(product);
+            else
+            {
+                cart.Add(new ProductAndUnits { product = product, units = units });
+            }
             return RedirectToAction("Index", "Products");
         }
 
+        [Authorize]
         // GET: Cart/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Cart cart, int productId, int? units)
         {
-            return View();
+            var p = cart.Find(pu => pu.product.Id == productId);
+
+            if (p != null)
+            {
+                if (units != null) p.units -= (int)units;
+
+                if (units == null || p.units <= 0) cart.Remove(p);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

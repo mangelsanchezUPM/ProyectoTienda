@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoTienda;
+using ProyectoTienda.Models;
 
 namespace ProyectoTienda.Controllers
 {
@@ -15,23 +16,27 @@ namespace ProyectoTienda.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(Cart cart)
         {
-            return View(db.Products.ToList());
+            var products = db.Products.ToList();
+
+            foreach (var pu in cart)
+            {
+                products.Find(p => p.Id == pu.product.Id).Amount -= pu.units;
+            }
+
+            return View(products);
         }
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
             Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
+
+            if (product == null) return HttpNotFound();
+            
             return View(product);
         }
 
