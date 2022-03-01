@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/20/2022 17:02:53
+-- Date Created: 02/28/2022 21:22:37
 -- Generated from EDMX file: C:\Users\Miguel Angel\source\repos\ProyectoTienda\Model1.edmx
 -- --------------------------------------------------
 
@@ -77,7 +77,8 @@ GO
 CREATE TABLE [dbo].[Orders] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
-    [ClientId] int  NOT NULL
+    [ClientId] int  NOT NULL,
+    [Total] float  NOT NULL
 );
 GO
 
@@ -85,7 +86,6 @@ GO
 CREATE TABLE [dbo].[Clients] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Surname] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL
 );
 GO

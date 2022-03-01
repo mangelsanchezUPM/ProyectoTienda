@@ -54,6 +54,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Total" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Clients">
     <Key>
@@ -61,7 +62,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductsWithoutStock">
@@ -176,6 +176,7 @@
           <NavigationProperty Name="Client" Relationship="Model1.ClientOrder" FromRole="Order" ToRole="Client" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ProductOrdered" Relationship="Model1.OrderProductOrdered" FromRole="Order" ToRole="ProductOrdered" />
+          <Property Name="Total" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -183,7 +184,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Surname" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductWithoutStock">
@@ -266,6 +266,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -274,7 +275,6 @@
         <MappingFragment StoreEntitySet="Clients">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Email" ColumnName="Email" />
         </MappingFragment>
       </EntityTypeMapping>
